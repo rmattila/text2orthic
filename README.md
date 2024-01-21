@@ -3,7 +3,7 @@
 This project transcribes English text into [Orthic shorthand](https://orthic.shorthand.fun/). It uses Python to convert each English word into a sequence of Orthic glyphs and render the transcription as an image.
 
 ## Motivation
-While there is existing reading material for Orthic shorthand, such as [the Book of Psalms](https://orthic.shorthand.fun/assets/reading/Orthic%20Psalms%201-20%20(Full%20Style)%201896%20Stevens.pdf) or [the New Testament](https://cdm15457.contentdm.oclc.org/digital/collection/p15457coll1/id/195/rec/1), much of it is quite dated -- both of the linked texts were transcribed in 1896. This project aims to bring a fresh perspective to Orthic shorthand practice by allowing users to translate and practice with more contemporary and personally interesting materials. Whether it's the latest news articles, modern literature, or even daily correspondence, this tool opens up new avenues for both learning and enjoying this efficient shorthand system.
+While there is existing reading material for Orthic shorthand, such as [the Book of Psalms](https://orthic.shorthand.fun/assets/reading/Orthic%20Psalms%201-20%20(Full%20Style)%201896%20Stevens.pdf) or [the New Testament](https://cdm15457.contentdm.oclc.org/digital/collection/p15457coll1/id/195/rec/1), much of it is quite dated (both of the linked transcriptions were published in 1896). This project aims to bring a fresh perspective to Orthic shorthand practice by allowing users to translate and practice with more contemporary and personally interesting materials. Whether it's the latest news articles, modern literature, or even daily correspondence, this tool opens up new avenues for both learning and enjoying this efficient shorthand system.
 
 
 ## Features
@@ -25,7 +25,7 @@ Below are images demonstrating the system's output:
   ![Handwritten Orthic Shorthand](resources/demo_handwritten.png)
 
 Both texts correspond to "The preceding rules and examples will enable the
-student to read the specimen of writing given on the opposite page, of which
+student to read the specimen of writing given on the opposite page of which
 this page is a" in English.
 
 ## TODOs
