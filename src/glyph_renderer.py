@@ -18,6 +18,9 @@ class GlyphRenderer:
             img = self.load_glyph_image(glyph.symbol)
             start_pos, end_pos = self.find_glyph_start_end_positions(img)
 
+            # Hide alignment pixels
+            img = self.replace_alignment_pixels(img)
+
             if not start_pos:
                 print(f"Could not find start position (green pixel) in {glyph.symbol}")
                 continue
@@ -45,14 +48,36 @@ class GlyphRenderer:
                     canvas = self.place_glyph(canvas, dot_img, dot_pos, (0, 0))
 
         canvas = self.crop_to_content(canvas)
-        canvas = self.replace_alignment_pixels(canvas)
         canvas = self.paste_on_white_background(canvas)
 
         return canvas
 
     def load_glyph_image(self, symbol):
         # Load the glyph image
-        return Image.open(f"{self.glyph_folder}/{symbol}.png")
+        img = Image.open(f"{self.glyph_folder}/{symbol}.png")
+
+        # Parse transparency
+        img = self.convert_grayscale_to_alpha(img)
+
+        return img
+
+    def convert_grayscale_to_alpha(self, img):
+        img = img.convert("RGBA")
+
+        for y in range(img.height):
+            for x in range(img.width):
+                r, g, b, _ = img.getpixel((x, y))
+
+                # Skip red and green pixels
+                if (r, g, b) == (255, 0, 0) or (r, g, b) == (0, 255, 0):
+                    continue
+
+                # Convert grayscale to alpha
+                grayscale = int(0.299 * r + 0.587 * g + 0.114 * b)
+                alpha = 255 - grayscale
+                img.putpixel((x, y), (0, 0, 0, alpha))
+
+        return img
 
     def find_glyph_start_end_positions(self, img):
         start_position = end_position = None
@@ -77,11 +102,11 @@ class GlyphRenderer:
         # Resize canvas if needed
         if new_width > canvas.width or new_height > canvas.height:
             new_canvas = Image.new("RGBA", (new_width, new_height), (255, 255, 255, 0))
-            new_canvas.paste(canvas, (0, 0))
+            new_canvas.alpha_composite(canvas)
             canvas = new_canvas
 
         # Paste the glyph onto the canvas
-        canvas.paste(glyph_img, (x_offset, y_offset), glyph_img)
+        canvas.alpha_composite(glyph_img, (x_offset, y_offset))
         return canvas
 
     def replace_alignment_pixels(self, canvas):
@@ -103,7 +128,7 @@ class GlyphRenderer:
 
     def paste_on_white_background(self, canvas):
         # Create a white background image
-        white_bg = Image.new("RGBA", canvas.size, "WHITE")
+        white_bg = Image.new("RGBA", canvas.size, "white")
         # Paste the canvas onto the white background
-        white_bg.paste(canvas, (0, 0), canvas)
+        white_bg.alpha_composite(canvas)
         return white_bg
