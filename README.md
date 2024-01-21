@@ -15,6 +15,9 @@ While there is existing reading material for Orthic shorthand, such as [the Book
 ## Usage
 Input the English text you wish to translate, and the software will render the corresponding Orthic shorthand as an image.
 
+### Adding New Glyphs
+To add a new glyph, place a `.png` image in the `resources/glyphs` folder. The filename should match the glyph's representation (e.g., `oe.png` for the "oe" glyph). In the image, mark the start of the glyph's stroke with a green pixel and the end with a red pixel. The system prioritizes longer filenames, meaning if `oe.png` exists, it will be used over separate `o.png` and `e.png` glyphs for the "oe" combination.
+
 ## Demonstrations
 Below are images demonstrating the system's output:
 
@@ -30,10 +33,11 @@ this page is a" in English.
 
 ## TODOs
 
-- Add glyphs for common punctuation 
-- Add rendering of capital letter indicator
-- Consider the two forms of `w` when rendering
-- Improve positioning of double-letter dot (see, e.g., `bb` for failure)
+- Add [better glyphs for joins](https://orthic.shorthand.fun/manual#how-to-write-and-join-the-characters) 
+- Add glyphs for [punctuation](https://orthic.shorthand.fun/manual#punctuation)
+- Add rendering of [capital letter indicator](https://orthic.shorthand.fun/manual#initial-capitals)
+- Consider [the two forms](https://orthic.shorthand.fun/manual#W-join) of `w` when rendering
+- Improve positioning of [double-letter dot](https://orthic.shorthand.fun/manual#doubled-letters) (see, e.g., `bb` for failure)
 - Use [Bezier curves](https://github.com/vbrg/melin) (or similar) for smoother and more realistic rendering
 
 ## Acknowledgments
