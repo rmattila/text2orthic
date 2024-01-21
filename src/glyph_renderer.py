@@ -29,6 +29,16 @@ class GlyphRenderer:
                     last_position[1] + end_pos[1] - start_pos[1],
                 )
 
+                if glyph.double:
+                    # Indicate a double-letter with a dot below
+                    dot_pos = (
+                        last_position[0] - img.width // 2,
+                        last_position[1] + img.height,
+                    )
+
+                    dot_img = self.load_glyph_image("doubled_dot")
+                    canvas = self.place_glyph(canvas, dot_img, dot_pos, (0, 0))
+
         canvas = self.crop_to_content(canvas)
         canvas = self.replace_alignment_pixels(canvas)
         canvas = self.paste_on_white_background(canvas)
