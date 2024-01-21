@@ -1,6 +1,10 @@
 from PIL import Image
 
 
+def sign(x: int):
+    return (x > 0) - (x < 0)
+
+
 class GlyphRenderer:
     def __init__(self, glyph_folder="../resources/glyphs"):
         self.glyph_folder = glyph_folder
@@ -31,12 +35,13 @@ class GlyphRenderer:
 
                 if glyph.double:
                     # Indicate a double-letter with a dot below
+                    dot_img = self.load_glyph_image("doubled_dot")
                     dot_pos = (
-                        last_position[0] - img.width // 2,
-                        last_position[1] + img.height,
+                        last_position[0]
+                        - (img.width // 2) * sign(end_pos[0] - start_pos[0]),
+                        last_position[1] - end_pos[1] + start_pos[1] + img.height,
                     )
 
-                    dot_img = self.load_glyph_image("doubled_dot")
                     canvas = self.place_glyph(canvas, dot_img, dot_pos, (0, 0))
 
         canvas = self.crop_to_content(canvas)
