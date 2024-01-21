@@ -72,7 +72,9 @@ class OrthicEncoder:
             and doubling set as needed.
         """
         capital = word[index : index + len(glyph_name)].isupper()
-        double = (index + len(glyph_name) < len(word)) and (
-            word[index + len(glyph_name)].lower() == word[index].lower()
-        )
+
+        double = False
+        if len(glyph_name) == 1 and index + 1 < len(word):
+            double = word[index + 1].lower() == word[index].lower()
+
         return Glyph(glyph_name, capital, double)
