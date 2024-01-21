@@ -9,7 +9,7 @@ While there is existing reading material for Orthic shorthand, such as [the Book
 ## Features
 - Transcribe English words and sentences into Orthic shorthand
 - Render translations using a collection of glyphs created by [Hugh L. Callendar and Jeremy W. Sherman](https://orthic.shorthand.fun/manual#the-cursive-alphabet)
-- Easily expandable glyph set to add abbreviations, diphthongs, and other linguistic elements by simply adding corresponding PNGs to the resources folder
+- Easily expandable glyph set to add abbreviations, compounds, and other linguistic elements by simply adding corresponding PNGs to the resources folder
 
 ## Usage
 Input the English text you wish to translate, and the software will render the corresponding Orthic shorthand as an image.
@@ -32,7 +32,7 @@ this page is a" in English.
 
 ## TODOs
 
-- Add [better glyphs for joins](https://orthic.shorthand.fun/manual#how-to-write-and-join-the-characters) 
+- Add more [glyphs for compounds](https://orthic.shorthand.fun/manual#how-to-write-and-join-the-characters) 
 - Add glyphs for [punctuation](https://orthic.shorthand.fun/manual#punctuation)
 - Add rendering of [capital letter indicator](https://orthic.shorthand.fun/manual#initial-capitals)
 - Consider [the two forms](https://orthic.shorthand.fun/manual#W-join) of `w` when rendering
