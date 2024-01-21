@@ -34,4 +34,4 @@ this page is a" in English.
 - Use [Bezier curves](https://github.com/vbrg/melin) (or similar) for smoother and more realistic rendering
 
 ## Acknowledgments
-The glyph images used in this project are licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/). We thank [the creators](https://orthic.shorthand.fun/) of these glyphs for their work.
+The glyph images used in this project are licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/). We thank [the creators](https://orthic.shorthand.fun/manual) of these glyphs for their work.
