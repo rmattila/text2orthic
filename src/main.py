@@ -3,14 +3,11 @@ from glyph_renderer import GlyphRenderer
 
 
 def main():
-    word = "abaicdefghijklmnopqurstuvwxyzhelloworld"
+    text = """The preceding rules and examples will enable the student to read the
+    specimen of writing given on the opposite page, of which this page is a"""
 
-    encoder = OrthicEncoder()
     renderer = GlyphRenderer()
-
-    glyphs = encoder.encode_word(word)
-    rendered_image = renderer.render_word(glyphs)
-
+    rendered_image = renderer.render_text(text)
     rendered_image.show()
 
 

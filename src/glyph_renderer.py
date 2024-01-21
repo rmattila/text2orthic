@@ -13,7 +13,7 @@ class GlyphRenderer:
     def __init__(self, glyph_folder="../resources/glyphs"):
         self.glyph_folder = glyph_folder
 
-    def render_text(self, text: str, space_width=10, line_height=100, line_width=600):
+    def render_text(self, text: str, space_width=10, line_height=100, line_width=1300):
         words = text.split()
         canvas = Image.new("RGBA", (line_width, line_height), (255, 255, 255, 0))
         x, y = 0, line_height
