@@ -16,7 +16,7 @@ class GlyphRenderer:
     def render_text(self, text: str, space_width=10, line_height=100, line_width=600):
         words = text.split()
         canvas = Image.new("RGBA", (line_width, line_height), (255, 255, 255, 0))
-        x, y = 0, 0
+        x, y = 0, line_height
 
         for word in words:
             word_img = self.render_word(word, transparent_background=True)
@@ -27,7 +27,7 @@ class GlyphRenderer:
             if y + word_img.height > canvas.height:
                 canvas = self.expand_canvas(canvas, line_width, y + word_img.height)
 
-            canvas.alpha_composite(word_img, (x, y))
+            canvas.alpha_composite(word_img, (x, y - word_img.height // 2))
             x += word_img.width + space_width
 
         canvas = self.crop_to_content(canvas)
