@@ -1,4 +1,8 @@
+from typing import List
 from PIL import Image
+
+from glyph import Glyph
+from orthic_encoder import OrthicEncoder
 
 
 def sign(x: int):
@@ -9,27 +13,57 @@ class GlyphRenderer:
     def __init__(self, glyph_folder="../resources/glyphs"):
         self.glyph_folder = glyph_folder
 
-    def render_word(self, glyphs):
-        # Start with an empty canvas
-        canvas = Image.new("RGBA", (1, 1), (255, 255, 255, 0))
-        last_position = (64, 64)  # Starting position
+    def render_text(self, text: str, space_width=10, line_height=100, line_width=600):
+        words = text.split()
+        canvas = Image.new("RGBA", (line_width, line_height), (255, 255, 255, 0))
+        x, y = 0, 0
+
+        for word in words:
+            word_img = self.render_word(word, transparent_background=True)
+            if x + word_img.width > line_width:
+                x = 0
+                y += line_height
+
+            if y + word_img.height > canvas.height:
+                canvas = self.expand_canvas(canvas, line_width, y + word_img.height)
+
+            canvas.alpha_composite(word_img, (x, y))
+            x += word_img.width + space_width
+
+        canvas = self.crop_to_content(canvas)
+        canvas = self.paste_on_white_background(canvas)
+
+        return canvas
+
+    def render_word(self, word: str, transparent_background: bool = False):
+        encoder = OrthicEncoder()
+        glyphs = encoder.encode_word(word)
+
+        # Start with an empty (big) canvas
+        #   This is a bit wasteful; we should dynamically resize the canvas,
+        #   but that turned out to be a bit messy to get correct (since we also
+        #   need to pad incase, say, multiple p:s leave the canvas on the left).
+        canvas = Image.new("RGBA", (100 * 45 + 512, 1024), (255, 255, 255, 0))
+        last_position = (512, 512)  # Starting position
 
         for glyph in glyphs:
-            img = self.load_glyph_image(glyph.symbol)
-            start_pos, end_pos = self.find_glyph_start_end_positions(img)
-
-            # Hide alignment pixels
-            img = self.replace_alignment_pixels(img)
-
-            if not start_pos:
-                print(f"Could not find start position (green pixel) in {glyph.symbol}")
-                continue
-
-            if not end_pos:
-                print(f"Could not find end position (red pixel) in {glyph.symbol}")
-                continue
-
             if glyph.symbol != "Unknown":
+                img = self.load_glyph_image(glyph.symbol)
+                start_pos, end_pos = self.find_glyph_start_end_positions(img)
+
+                # Hide alignment pixels
+                img = self.replace_alignment_pixels(img)
+
+                if not start_pos:
+                    print(
+                        f"Could not find start position (green pixel) in {glyph.symbol}"
+                    )
+                    continue
+
+                if not end_pos:
+                    print(f"Could not find end position (red pixel) in {glyph.symbol}")
+                    continue
+
                 canvas = self.place_glyph(canvas, img, last_position, start_pos)
                 last_position = (
                     last_position[0] + end_pos[0] - start_pos[0],
@@ -48,7 +82,8 @@ class GlyphRenderer:
                     canvas = self.place_glyph(canvas, dot_img, dot_pos, (0, 0))
 
         canvas = self.crop_to_content(canvas)
-        canvas = self.paste_on_white_background(canvas)
+        if not transparent_background:
+            canvas = self.paste_on_white_background(canvas)
 
         return canvas
 
@@ -95,19 +130,14 @@ class GlyphRenderer:
         x_offset = last_position[0] - start_position[0]
         y_offset = last_position[1] - start_position[1]
 
-        # Check if canvas needs to be resized
-        new_width = max(canvas.width, x_offset + glyph_img.width)
-        new_height = max(canvas.height, y_offset + glyph_img.height)
-
-        # Resize canvas if needed
-        if new_width > canvas.width or new_height > canvas.height:
-            new_canvas = Image.new("RGBA", (new_width, new_height), (255, 255, 255, 0))
-            new_canvas.alpha_composite(canvas)
-            canvas = new_canvas
-
         # Paste the glyph onto the canvas
         canvas.alpha_composite(glyph_img, (x_offset, y_offset))
         return canvas
+
+    def expand_canvas(self, canvas, new_width, new_height):
+        new_canvas = Image.new("RGBA", (new_width, new_height), (255, 255, 255, 0))
+        new_canvas.paste(canvas)
+        return new_canvas
 
     def replace_alignment_pixels(self, canvas):
         for y in range(canvas.height):
