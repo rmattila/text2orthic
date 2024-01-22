@@ -21,7 +21,10 @@ class OrthicEncoder:
         glyphs = {}
 
         for filename in os.listdir("../resources/glyphs"):
-            if filename.endswith(".png"):
+            if filename == "..png":
+                # the period glyph
+                glyphs["."] = Glyph(".")
+            elif filename.endswith(".png"):
                 glyph_name = filename.split(".")[0]
                 glyphs[glyph_name] = Glyph(glyph_name)
 
