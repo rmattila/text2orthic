@@ -8,7 +8,7 @@ While there is existing reading material for Orthic shorthand, such as [the Book
 
 ## Features
 - Transcribe English words and sentences into Orthic shorthand
-- Render translations using a collection of glyphs created by [Hugh L. Callendar and Jeremy W. Sherman](https://orthic.shorthand.fun/manual#the-cursive-alphabet)
+- Render transcriptions using a [collection of glyphs](https://orthic.shorthand.fun/manual#the-cursive-alphabet) created by [Hugh L. Callendar](https://en.wikipedia.org/wiki/Hugh_Longbourne_Callendar) and [Jeremy W. Sherman](https://jeremywsherman.com/)
 - Easily expandable glyph set to add abbreviations, compounds, and other linguistic elements by simply adding corresponding PNGs to the resources folder
 
 ## Usage
@@ -46,4 +46,4 @@ Here's a longer sample of (computer generated) output:
 - Use [Bezier curves](https://github.com/vbrg/melin) (or similar) for smoother and more realistic rendering
 
 ## Acknowledgments
-The glyph images used in this project are licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/). We thank [the creators](https://orthic.shorthand.fun/manual) of these glyphs for their work.
+The glyph images used in this project are licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/).
