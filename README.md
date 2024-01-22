@@ -30,13 +30,19 @@ Both texts correspond to "The preceding rules and examples will enable the
 student to read the specimen of writing given on the opposite page of which
 this page is a" in English.
 
+Here's a longer sample of (computer generated) output:
+
+![Longer Generated Orthic Shorthand](resources/demo_longer.png)
+
 ## TODOs
 
 - Add more [glyphs for compounds](https://orthic.shorthand.fun/manual#how-to-write-and-join-the-characters) 
-- Add glyphs for [punctuation](https://orthic.shorthand.fun/manual#punctuation)
+- Add more glyphs for [punctuation](https://orthic.shorthand.fun/manual#punctuation)
 - Add rendering of [capital letter indicator](https://orthic.shorthand.fun/manual#initial-capitals)
 - Consider [the two forms](https://orthic.shorthand.fun/manual#W-join) of `w` when rendering
 - Improve positioning of [double-letter dot](https://orthic.shorthand.fun/manual#doubled-letters) (see, e.g., `bb` for failure)
+- Add separate folder with [ordinary style](https://orthic.shorthand.fun/manual#ordinary-style) abbreviation glyphs that can be enabled via flag (fully-written style should be the default rendering option)
+- Handle and preserve paragraph breaks (from original text)
 - Use [Bezier curves](https://github.com/vbrg/melin) (or similar) for smoother and more realistic rendering
 
 ## Acknowledgments
