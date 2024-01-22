@@ -59,8 +59,8 @@ class GlyphRenderer:
 
                 # Hide alignment pixels
                 if glyph.symbol in SPECIAL_SYMBOLS:
-                    # if non-connected symbol (e.g., a number or a semicolon) replace with white
-                    img = self.replace_alignment_pixels(img, (255, 255, 255))
+                    # if non-connected symbol (e.g., a number or a semicolon) put transparent pixel
+                    img = self.replace_alignment_pixels(img, (0, 0, 0, 0))
                 else:
                     # otherwise use black
                     img = self.replace_alignment_pixels(img)
