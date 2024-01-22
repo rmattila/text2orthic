@@ -18,17 +18,17 @@ Input the English text you wish to translate, and the software will render the c
 To add a new glyph, place a `.png` image in the `resources/glyphs` folder. The filename should match the glyph's representation (e.g., `ing.png` for the "ing" glyph). In the image, mark the start of the glyph's stroke with a green pixel and the end with a red pixel. The system prioritizes longer filenames, meaning if `ing.png` exists, it will be used over separate `i.png`, `n.png` and `g.png` glyphs for the "ing" combination.
 
 ## Demonstrations
-Below are images demonstrating the system's output:
+Below are images demonstrating the system's output.
 
 - Generated Orthic Shorthand:
   ![Generated Orthic Shorthand](resources/demo_generated.png)
 
-- Handwritten Orthic Shorthand (from [here](https://orthic.shorthand.fun/manual#specimen-of-fully-written-style)):
+- For reference, here is the same text written by a human (from [here](https://orthic.shorthand.fun/manual#specimen-of-fully-written-style)):
   ![Handwritten Orthic Shorthand](resources/demo_handwritten.png)
 
-Both texts correspond to "The preceding rules and examples will enable the
+Both texts correspond to "_The preceding rules and examples will enable the
 student to read the specimen of writing given on the opposite page of which
-this page is a" in English.
+this page is a_" in English.
 
 Here's a longer sample of (computer generated) output:
 
