@@ -1,6 +1,22 @@
 # symbols that are not connected to each other when printed and for which
 # no double-letter symbol should be rendered
-SPECIAL_SYMBOLS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ";", ",", ":", "."]
+SPECIAL_SYMBOLS = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "0",
+    ";",
+    ",",
+    ":",
+    ".",
+    "?",
+]
 
 
 class Glyph:
