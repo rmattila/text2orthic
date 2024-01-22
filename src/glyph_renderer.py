@@ -1,7 +1,7 @@
 from typing import List
 from PIL import Image
 
-from glyph import Glyph
+from glyph import Glyph, SPECIAL_SYMBOLS
 from orthic_encoder import OrthicEncoder
 
 
@@ -39,6 +39,12 @@ class GlyphRenderer:
         encoder = OrthicEncoder()
         glyphs = encoder.encode_word(word)
 
+        n_unknown_glyphs = sum(glyph.symbol == "Unknown" for glyph in glyphs)
+        if n_unknown_glyphs > 0:
+            print(
+                f"Encountered {n_unknown_glyphs} unknown glyphs when rendering the word '{word}'"
+            )
+
         # Start with an empty (big) canvas
         #   This is a bit wasteful; we should dynamically resize the canvas,
         #   but that turned out to be a bit messy to get correct (since we also
@@ -52,7 +58,12 @@ class GlyphRenderer:
                 start_pos, end_pos = self.find_glyph_start_end_positions(img)
 
                 # Hide alignment pixels
-                img = self.replace_alignment_pixels(img)
+                if glyph.symbol in SPECIAL_SYMBOLS:
+                    # if non-connected symbol (e.g., a number or a semicolon) replace with white
+                    img = self.replace_alignment_pixels(img, (255, 255, 255))
+                else:
+                    # otherwise use black
+                    img = self.replace_alignment_pixels(img)
 
                 if not start_pos:
                     print(
@@ -139,7 +150,7 @@ class GlyphRenderer:
         new_canvas.paste(canvas)
         return new_canvas
 
-    def replace_alignment_pixels(self, canvas):
+    def replace_alignment_pixels(self, canvas, color=(0, 0, 0)):
         for y in range(canvas.height):
             for x in range(canvas.width):
                 pixel = canvas.getpixel((x, y))
@@ -148,7 +159,7 @@ class GlyphRenderer:
                     0,
                     0,
                 ):  # Green or Red
-                    canvas.putpixel((x, y), (0, 0, 0))  # Replace with black
+                    canvas.putpixel((x, y), color)
 
         return canvas
 

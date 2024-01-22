@@ -1,6 +1,6 @@
 import os
 from typing import List
-from glyph import Glyph
+from glyph import Glyph, SPECIAL_SYMBOLS
 
 
 class OrthicEncoder:
@@ -74,7 +74,12 @@ class OrthicEncoder:
         capital = word[index : index + len(glyph_name)].isupper()
 
         double = False
-        if len(glyph_name) == 1 and index + 1 < len(word):
+        if (
+            len(glyph_name) == 1
+            and index + 1 < len(word)
+            and not glyph_name
+            in SPECIAL_SYMBOLS  # no double-letter dot under, e.g., numbers
+        ):
             double = word[index + 1].lower() == word[index].lower()
 
         return Glyph(glyph_name, capital, double)
