@@ -93,6 +93,17 @@ class GlyphRenderer:
                     canvas = self.place_glyph(canvas, dot_img, dot_pos, (0, 0))
 
         canvas = self.crop_to_content(canvas)
+
+        # Check if there is any capital letter in the word,
+        # if so, add an indicator below the word
+        if any(glyph.capital for glyph in glyphs):
+            indicator_img = self.load_glyph_image("capital_mark")
+            old_height = canvas.height
+            canvas = self.expand_canvas(
+                canvas, canvas.width, canvas.height + indicator_img.height
+            )
+            canvas.alpha_composite(indicator_img, (0, old_height))
+
         if not transparent_background:
             canvas = self.paste_on_white_background(canvas)
 
