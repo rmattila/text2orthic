@@ -44,6 +44,7 @@ Here's a longer sample of (computer generated) output:
 - Improve positioning of [double-letter dot](https://orthic.shorthand.fun/manual#doubled-letters) (see, e.g., `bb` for failure)
 - Add separate folder with [ordinary style](https://orthic.shorthand.fun/manual#ordinary-style) abbreviation glyphs that can be enabled via flag (fully-written style should be the default rendering option)
 - Handle and preserve paragraph breaks (from original text)
+- Improve user interface
 - ~~Use [Bezier curves](https://github.com/vbrg/melin) (or similar) for smoother and more realistic rendering~~
 
 ## Acknowledgments
