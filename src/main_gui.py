@@ -17,7 +17,7 @@ def create_thumbnail(image, max_size=(580, 200)):
 def main():
     layout = [
         [sg.Text("Enter text to transcribe:")],
-        [sg.Multiline(key="-INPUT-", size=(80, 25))],
+        [sg.Multiline(key="-INPUT-", size=(80, 20))],
         [
             sg.Button("Transcribe"),
             sg.Button("Open in Viewer"),
@@ -25,7 +25,11 @@ def main():
             sg.Button("About"),
             sg.Button("Exit"),
         ],
-        [sg.Image(key="-IMAGE-")],
+        [
+            sg.Column([], expand_x=True),
+            sg.Image(key="-IMAGE-"),
+            sg.Column([], expand_x=True),
+        ],
         [
             sg.Text(
                 "Image is resized. Click 'Open in Viewer' for full size.",
