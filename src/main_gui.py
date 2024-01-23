@@ -8,7 +8,7 @@ def render_orthic_text(text):
     return renderer.render_text(text)
 
 
-def create_thumbnail(image, max_size=(580, 200)):
+def create_thumbnail(image, max_size=(550, 200)):
     thumbnail = image.copy()
     thumbnail.thumbnail(max_size)
     return thumbnail
