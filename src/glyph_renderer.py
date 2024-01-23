@@ -100,7 +100,9 @@ class GlyphRenderer:
             indicator_img = self.load_glyph_image("capital_mark")
             old_height = canvas.height
             canvas = self.expand_canvas(
-                canvas, canvas.width, canvas.height + indicator_img.height
+                canvas,
+                max(canvas.width, indicator_img.width),
+                canvas.height + indicator_img.height,
             )
             canvas.alpha_composite(indicator_img, (0, old_height))
 
