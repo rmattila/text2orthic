@@ -37,7 +37,7 @@ Here's a longer sample of (computer generated) output:
 ## TODOs
 
 - [ ] Add more [glyphs for compounds](https://orthic.shorthand.fun/manual#how-to-write-and-join-the-characters) and overlapping joins
-- [ ]Add more glyphs for [punctuation](https://orthic.shorthand.fun/manual#punctuation) (e.g., `()!-"` are currently missing)
+- [ ] Add more glyphs for [punctuation](https://orthic.shorthand.fun/manual#punctuation) (e.g., `()!-"` are currently missing)
   - Maybe reconsider how these are parsed and loaded (so as to avoid potentially problematic filenames like `".png`)
 - [x] Add rendering of [capital letter indicator](https://orthic.shorthand.fun/manual#initial-capitals)
 - [ ] Consider [the two forms](https://orthic.shorthand.fun/manual#W-join) of `w` when rendering
@@ -45,7 +45,7 @@ Here's a longer sample of (computer generated) output:
 - [ ] Add separate folder with [ordinary style](https://orthic.shorthand.fun/manual#ordinary-style) abbreviation glyphs that can be enabled via flag (fully-written style should be the default rendering option)
 - [ ] Handle and preserve paragraph breaks (from original text)
 - [ ] Improve user interface
-- ~~[ ] Use [Bezier curves](https://github.com/vbrg/melin) (or similar) for smoother and more realistic rendering~~
+- [ ] ~~Use [Bezier curves](https://github.com/vbrg/melin) (or similar) for smoother and more realistic rendering~~
 
 ## Acknowledgments
 The glyph images used in this project are licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/).
