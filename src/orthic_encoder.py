@@ -45,6 +45,22 @@ class OrthicEncoder:
         while i < len(word):
             glyph_added = False
             for glyph_name in sorted(self.glyph_dict.keys(), key=len, reverse=True):
+                next_index = i + len(glyph_name)
+
+                # Check if the next character forms a double letter with the last in
+                # this glyph
+                forms_double = (
+                    next_index < len(word)
+                    and word[next_index].lower() == word[next_index - 1].lower()
+                )
+                # Skip this glyph if it would absorb a double letter
+                #
+                # An example is "ISSUE", which we want to parse to
+                # [I][S-double][U][E] and not [IS][S][U][E]
+                # if an IS-glyph exists
+                if forms_double and len(glyph_name) > 1:
+                    continue
+
                 if word[i:].lower().startswith(glyph_name):
                     glyph = self.create_glyph(word, i, glyph_name)
                     result.append(glyph)
@@ -54,6 +70,7 @@ class OrthicEncoder:
                         i += len(glyph_name)
                     glyph_added = True
                     break
+
             if not glyph_added:
                 result.append(Glyph("Unknown"))
                 i += 1
