@@ -154,3 +154,7 @@ cython_debug/
 
 # VSCode
 launch.json
+
+# Temporary files
+temp_thumbnail.png
+temp_output.png

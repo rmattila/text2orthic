@@ -1,1 +1,2 @@
 pillow>=10.0.0
+pysimplegui>=4.60.5
