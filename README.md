@@ -49,6 +49,7 @@ Here's a longer sample of (computer generated) output:
 - [ ] Handle and preserve paragraph breaks (from original text)
 - [x] Create graphical user interface
 - [ ] ~~Use [Bezier curves](https://github.com/vbrg/melin) (or similar) for smoother and more realistic rendering~~
+- [ ] Add installation/how to run instructions
 
 ## Acknowledgments
 The glyph images used in this project are licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/).
