@@ -39,6 +39,7 @@ Here's a longer sample of (computer generated) output:
 ## TODOs
 
 - [ ] Add more [glyphs for compounds](https://orthic.shorthand.fun/manual#how-to-write-and-join-the-characters) and overlapping joins
+  - `problematic_words.txt` contains words where simple glyph concatenation leads to overlaps and readability issues
 - [ ] Add more glyphs for [punctuation](https://orthic.shorthand.fun/manual#punctuation) (e.g., `()!-"` are currently missing)
   - Maybe reconsider how these are parsed and loaded (so as to avoid potentially problematic filenames like `".png`)
 - [x] Add rendering of [capital letter indicator](https://orthic.shorthand.fun/manual#initial-capitals)
@@ -51,3 +52,9 @@ Here's a longer sample of (computer generated) output:
 
 ## Acknowledgments
 The glyph images used in this project are licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/).
+
+## Resources
+
+- [Orthic Shorthand](https://orthic.shorthand.fun/) and [Dictionary](https://orthic.shorthand.fun/dictionary)
+- [Ernest Clare, "Orhtographic Cursive Shorthand" (1915)](https://recordsearch.naa.gov.au/SearchNRetrieve/Interface/ViewImage.aspx?B=3408323)
+- [r/orthic](https://old.reddit.com/r/orthic/) and [r/shorthand](https://old.reddit.com/r/shorthand/)
