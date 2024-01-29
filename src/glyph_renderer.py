@@ -13,8 +13,37 @@ class GlyphRenderer:
     def __init__(self, glyph_folder="../resources/glyphs"):
         self.glyph_folder = glyph_folder
 
-    def render_text(self, text: str, space_width=10, line_height=100, line_width=1300):
+    def render_text(
+        self,
+        text: str,
+        space_width=10,
+        line_height=100,
+        line_width=1300,
+        lines_per_page=float("inf"),
+    ):
+        """
+        Renders Orthic shorthand text as an image or a series of images (pages).
+
+        This function takes a string of English text and converts it into Orthic shorthand.
+        The rendered text is then composed onto an image canvas. If `lines_per_page` is set to a finite number,
+        the text is split into multiple pages, each containing the specified number of lines.
+        Otherwise, the entire text is rendered onto a single image.
+
+        Args:
+            text (str): The English text to be rendered in Orthic shorthand.
+            space_width (int, optional): The space between words in pixels. Defaults to 10.
+            line_height (int, optional): The height of each line in pixels. Defaults to 100.
+            line_width (int, optional): The width of the canvas in pixels. Defaults to 1300.
+            lines_per_page (int, optional): The maximum number of lines per page. Defaults to float("inf"),
+                which indicates no pagination.
+
+        Returns:
+            list or Image: A list of PIL Image objects, each representing a page, if `lines_per_page` is finite.
+            If `lines_per_page` is infinite, a single Image object is returned representing the entire text.
+        """
         words = text.split()
+        pages = []
+        current_line = 1
         canvas = Image.new("RGBA", (line_width, line_height), (255, 255, 255, 0))
         x, y = 0, line_height
 
@@ -23,6 +52,22 @@ class GlyphRenderer:
             if x + word_img.width > line_width:
                 x = 0
                 y += line_height
+                current_line += 1
+
+                # paginate
+                if current_line > lines_per_page:
+                    # render and save
+                    canvas = self.crop_to_content(canvas)
+                    canvas = self.paste_on_white_background(canvas)
+
+                    pages.append(canvas)
+
+                    # create a fresh page
+                    canvas = Image.new(
+                        "RGBA", (line_width, line_height), (255, 255, 255, 0)
+                    )
+                    x, y = 0, line_height
+                    current_line = 1
 
             if y + word_img.height > canvas.height:
                 canvas = self.expand_canvas(canvas, line_width, y + word_img.height)
@@ -33,7 +78,9 @@ class GlyphRenderer:
         canvas = self.crop_to_content(canvas)
         canvas = self.paste_on_white_background(canvas)
 
-        return canvas
+        pages.append(canvas)
+
+        return pages if lines_per_page != float("inf") else pages[0]
 
     def render_word(self, word: str, transparent_background: bool = False):
         encoder = OrthicEncoder()

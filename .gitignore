@@ -155,6 +155,7 @@ cython_debug/
 # VSCode
 launch.json
 
-# Temporary files
+# Temporary and output files
 temp_thumbnail.png
 temp_output.png
+transcription.pdf

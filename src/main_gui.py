@@ -1,17 +1,28 @@
 import PySimpleGUI as sg
+from PIL import ImageOps
+
 from orthic_encoder import OrthicEncoder
 from glyph_renderer import GlyphRenderer
-
-
-def render_orthic_text(text):
-    renderer = GlyphRenderer()
-    return renderer.render_text(text)
 
 
 def create_thumbnail(image, max_size=(550, 200)):
     thumbnail = image.copy()
     thumbnail.thumbnail(max_size)
     return thumbnail
+
+
+def expand_canvas(img, target_width, target_height, padding_size):
+    # First, add padding around the original image
+    padded_img = ImageOps.expand(img, border=padding_size, fill="white")
+
+    # Calculate how much to expand on the right and bottom after padding
+    right_padding = max(target_width - padded_img.width, 0)
+    bottom_padding = max(target_height - padded_img.height, 0)
+
+    # Apply additional padding to expand to the target size
+    return ImageOps.expand(
+        padded_img, border=(0, 0, right_padding, bottom_padding), fill="white"
+    )
 
 
 def main():
@@ -21,6 +32,7 @@ def main():
         [
             sg.Button("Transcribe"),
             sg.Button("Open in Viewer"),
+            sg.Button("Export to PDF"),
             sg.Column([], expand_x=True),
             sg.Button("About"),
             sg.Button("Exit"),
@@ -51,7 +63,7 @@ def main():
 
             if text:
                 # render text to orthic
-                orthic_image = render_orthic_text(text)
+                orthic_image = GlyphRenderer().render_text(text)
                 img_path = (
                     "temp_output.png"  # Temporary file to save the rendered image
                 )
@@ -82,6 +94,36 @@ def main():
                 sg.popup(
                     "No image to display. Please transcribe text first.", title="Error"
                 )
+        elif event == "Export to PDF":
+            # Optimize format for Kindle
+            PADDING_SIZE = 20
+            KINDLE_WIDTH = 1072
+            KINDLE_HEIGHT = 1448
+            line_height = 100
+
+            text = values["-INPUT-"]
+            images = GlyphRenderer().render_text(
+                text,
+                line_width=KINDLE_WIDTH - PADDING_SIZE,
+                line_height=line_height,
+                lines_per_page=(KINDLE_HEIGHT - PADDING_SIZE) // line_height,
+            )
+
+            # Convert and expand PIL Images for saving as PDF
+            pdf_images = [
+                expand_canvas(
+                    img.convert("RGB"), KINDLE_WIDTH, KINDLE_HEIGHT, PADDING_SIZE
+                )
+                for img in images
+            ]
+
+            # Save as a PDF
+            pdf_filename = "transcription.pdf"
+            pdf_images[0].save(
+                pdf_filename, save_all=True, append_images=pdf_images[1:]
+            )
+
+            sg.popup("Exported to PDF successfully!")
         elif event == "About":
             sg.popup(
                 "text2orthic: Orthic Shorthand Transcriptor\n\nCreated by rmattila\nhttps://github.com/rmattila/text2orthic",
