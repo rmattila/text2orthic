@@ -10,7 +10,7 @@ While there is existing reading material for Orthic shorthand, such as [the Book
 - Transcribe English words and sentences into Orthic shorthand
 - Render transcriptions using a [collection of glyphs](https://orthic.shorthand.fun/manual#the-cursive-alphabet) created by [Hugh L. Callendar](https://en.wikipedia.org/wiki/Hugh_Longbourne_Callendar) and [Jeremy W. Sherman](https://jeremywsherman.com/)
 - Easily expandable glyph set to add abbreviations, compounds, and other linguistic elements by simply adding corresponding PNGs to the resources folder
-- Export to PDF in format optimized for an e-book reader ([sample](resources/demo_ebook.pdf))
+- Export to PDF in format optimized for an e-book reader ([sample](https://raw.githubusercontent.com/rmattila/text2orthic/main/resources/demo_ebook.pdf))
 
 ## Usage
 Input the English text you wish to transcribe, and the software will render the corresponding Orthic shorthand as an image.
@@ -37,7 +37,7 @@ Here's a longer sample of (computer generated) output:
 
 ![Longer Generated Orthic Shorthand](resources/demo_longer.png)
 
-An even longer sample (17 pages) optimized for an e-book reader is available [here](resources/demo_ebook.pdf). It was created using the "Export to PDF" functionality.
+An even longer sample (17 pages) optimized for an e-book reader is available [here](https://raw.githubusercontent.com/rmattila/text2orthic/main/resources/demo_ebook.pdf). It was created using the "Export to PDF" functionality.
 
 ## TODOs
 
