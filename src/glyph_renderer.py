@@ -1,5 +1,6 @@
 from typing import List
 from PIL import Image
+from tqdm import tqdm
 
 from glyph import Glyph, SPECIAL_SYMBOLS
 from orthic_encoder import OrthicEncoder
@@ -47,7 +48,7 @@ class GlyphRenderer:
         canvas = Image.new("RGBA", (line_width, line_height), (255, 255, 255, 0))
         x, y = 0, line_height
 
-        for word in words:
+        for word in tqdm(words):
             word_img = self.render_word(word, transparent_background=True)
             if x + word_img.width > line_width:
                 x = 0
@@ -88,7 +89,7 @@ class GlyphRenderer:
 
         n_unknown_glyphs = sum(glyph.symbol == "Unknown" for glyph in glyphs)
         if n_unknown_glyphs > 0:
-            print(
+            tqdm.write(
                 f"Encountered {n_unknown_glyphs} unknown glyphs when rendering the word '{word}'"
             )
 
@@ -113,13 +114,15 @@ class GlyphRenderer:
                     img = self.replace_alignment_pixels(img)
 
                 if not start_pos:
-                    print(
+                    tqdm.write(
                         f"Could not find start position (green pixel) in {glyph.symbol}"
                     )
                     continue
 
                 if not end_pos:
-                    print(f"Could not find end position (red pixel) in {glyph.symbol}")
+                    tqdm.write(
+                        f"Could not find end position (red pixel) in {glyph.symbol}"
+                    )
                     continue
 
                 canvas = self.place_glyph(canvas, img, last_position, start_pos)
