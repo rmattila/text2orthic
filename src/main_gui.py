@@ -97,9 +97,10 @@ def main():
         elif event == "Export to PDF":
             # Optimize format for Kindle
             PADDING_SIZE = 20
-            KINDLE_WIDTH = 1072
-            KINDLE_HEIGHT = 1448
+            KINDLE_HEIGHT = 1024  # 1448
+            KINDLE_WIDTH = 768  # 1072
             line_height = 100
+            DPI = 212  # 300
 
             text = values["-INPUT-"]
             images = GlyphRenderer().render_text(
@@ -120,10 +121,16 @@ def main():
             # Save as a PDF
             pdf_filename = "transcription.pdf"
             pdf_images[0].save(
-                pdf_filename, save_all=True, append_images=pdf_images[1:]
+                pdf_filename,
+                save_all=True,
+                append_images=pdf_images[1:],
+                dpi=(DPI, DPI),
             )
 
-            sg.popup("Exported to PDF successfully!")
+            sg.popup(
+                f"Exported to PDF successfully!\n\nFile: {pdf_filename}",
+                title="Export Complete",
+            )
         elif event == "About":
             sg.popup(
                 "text2orthic: Orthic Shorthand Transcriptor\n\nCreated by rmattila\nhttps://github.com/rmattila/text2orthic",
