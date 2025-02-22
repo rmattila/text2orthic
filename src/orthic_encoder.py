@@ -23,11 +23,8 @@ class OrthicEncoder:
         glyphs = {}
 
         for filename in os.listdir("../resources/glyphs"):
-            if filename == "..png":
-                # the period glyph
-                glyphs["."] = Glyph(".")
-            elif filename.endswith(".png"):
-                glyph_name = filename.split(".")[0]
+            if filename.endswith(".png"):
+                glyph_name = filename[:-4]
                 glyphs[glyph_name] = Glyph(glyph_name)
 
         return glyphs
@@ -42,6 +39,18 @@ class OrthicEncoder:
         Returns:
             list: A list of Glyph objects representing the encoded word.
         """
+        if word.lower() in ["l", "l."]:
+            result = [Glyph("l_standalone")]
+            if len(word) > 1:
+                result.append(Glyph("."))
+            return result
+
+        if word.lower() in ["s", "s."]:
+            result = [Glyph("s_straight")]
+            if len(word) > 1:
+                result.append(Glyph("."))
+            return result
+
         result = []
         i = 0
         while i < len(word):
