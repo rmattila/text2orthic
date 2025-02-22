@@ -1,4 +1,3 @@
-wr: not using digraph
 xh: really wrong
 ph: not using digraph
 ps: missing digraph
