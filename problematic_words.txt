@@ -1,4 +1,3 @@
-ng: needs digraph (though full ing is fine)
 * w: needs medial, final handling
 sw, ws: not using digraph
 wl: wrong digraph
@@ -21,3 +20,4 @@ Trickier cases to look at later:
 
 * should handle final -th
 * "ee" doesn't combine well with some letters like in "bee"
+* -ing vs ing (both in one word: "kinging") requires either a dictionary or semantic awareness
