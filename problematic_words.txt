@@ -1,4 +1,3 @@
-* w: needs medial, final handling
 sw, ws: not using digraph
 wl: wrong digraph
 oa, ao: wrong
@@ -15,6 +14,7 @@ bin
 ability
 complex
 rt, tr
+ew, iw need their own custom digraph to handle the "hooking"
 
 Trickier cases to look at later:
 

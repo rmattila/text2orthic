@@ -74,14 +74,16 @@ class OrthicEncoder:
                     continue
 
                 if word[i:].lower().startswith(glyph_name):
+                    advance = len(glyph_name)
                     if glyph_name == 'ay' and i > 0 and word[i-1].lower() in uses_under_ay or i > 1 and word[i-2:i].lower() in uses_under_ay:
                         glyph_name = 'ay_under'
+                    elif glyph_name == 'w' and i == 0:
+                        glyph_name = 'w_initial'
                     glyph = self.create_glyph(word, i, glyph_name)
                     result.append(glyph)
                     if glyph.double:
-                        i += 2  # Advance by 2 for double letters
-                    else:
-                        i += len(glyph_name)
+                        advance = 2
+                    i += advance
                     glyph_added = True
                     break
 
