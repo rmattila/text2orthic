@@ -21,6 +21,5 @@ rt, tr
 
 Trickier cases to look at later:
 
-* "esper" doesn't use sp digraph, but should
 * should handle final -th
 * "ee" doesn't combine well with some letters like in "bee"
