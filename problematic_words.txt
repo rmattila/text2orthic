@@ -1,4 +1,3 @@
-ph: not using digraph
 ps: missing digraph
 ee: not using digraph, dotting instead
 standalone L and L.: needs intro stroke
