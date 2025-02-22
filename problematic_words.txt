@@ -1,5 +1,3 @@
-sr: r on wrong side
-sh: not using sr
 wr: not using digraph
 xh: really wrong
 ph: not using digraph
