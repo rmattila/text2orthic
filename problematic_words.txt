@@ -1,5 +1,4 @@
 standalone L and L.: needs intro stroke
-ay: not using digraph
 ng: needs digraph (though full ing is fine)
 * w: needs medial, final handling
 sw, ws: not using digraph
@@ -10,7 +9,7 @@ be, bi: need digraph to avoid overlap
 need improvement, but not flat wrong: rl, ec, ic, wn, gd, mk, tw, dw, wl; will need wn digraph once have med/fin w support
 need smoothing: io, eo, au
 ae, ea, ia
-* hard: correct curve of ae/ea, ai/ia, ay/ya
+* correct curve of ae/ea, ai/ia, ya
 gills
 rich
 efficient

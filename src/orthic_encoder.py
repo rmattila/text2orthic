@@ -2,6 +2,8 @@ import os
 from typing import List
 from glyph import Glyph, SPECIAL_SYMBOLS
 
+uses_under_ay = 'd t j q m n v t'.split()
+
 
 class OrthicEncoder:
     """
@@ -53,6 +55,7 @@ class OrthicEncoder:
                     next_index < len(word)
                     and word[next_index].lower() == word[next_index - 1].lower()
                 )
+
                 # Skip this glyph if it would absorb a double letter
                 #
                 # An example is "ISSUE", which we want to parse to
@@ -62,6 +65,8 @@ class OrthicEncoder:
                     continue
 
                 if word[i:].lower().startswith(glyph_name):
+                    if glyph_name == 'ay' and i > 0 and word[i-1].lower() in uses_under_ay or i > 1 and word[i-2:i].lower() in uses_under_ay:
+                        glyph_name = 'ay_under'
                     glyph = self.create_glyph(word, i, glyph_name)
                     result.append(glyph)
                     if glyph.double:
@@ -97,8 +102,8 @@ class OrthicEncoder:
         if (
             len(glyph_name) == 1
             and index + 1 < len(word)
-            and not glyph_name
-            in SPECIAL_SYMBOLS  # no double-letter dot under, e.g., numbers
+            and glyph_name
+            not in SPECIAL_SYMBOLS  # no double-letter dot under, e.g., numbers
         ):
             double = word[index + 1].lower() == word[index].lower()
 
