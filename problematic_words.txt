@@ -1,4 +1,3 @@
-ee: not using digraph, dotting instead
 standalone L and L.: needs intro stroke
 ay: not using digraph
 ng: needs digraph (though full ing is fine)
@@ -20,6 +19,8 @@ ability
 complex
 rt, tr
 
+Trickier cases to look at later:
 
 * "esper" doesn't use sp digraph, but should
 * should handle final -th
+* "ee" doesn't combine well with some letters like in "bee"
