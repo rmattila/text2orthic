@@ -26,6 +26,13 @@ class Glyph:
         self.capital = capital
         self.double = double
 
+    def __eq__(self, value):
+        return (
+            self.symbol == value.symbol
+            and self.capital == value.capital
+            and self.double == value.double
+        )
+
     def __repr__(self):
         return (
             f"Glyph(symbol={self.symbol}, capital={self.capital}, double={self.double})"

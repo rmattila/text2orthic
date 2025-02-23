@@ -90,6 +90,9 @@ class OrthicEncoder:
             if not glyph_added:
                 result.append(Glyph("Unknown"))
                 i += 1
+        if result[-2:] == [Glyph('w'), Glyph('s')] or result[-2:] == [Glyph('w_initial'), Glyph('s')]:
+            result[-2] = Glyph('ws_final')
+            result.pop()
         return result
 
     def create_glyph(self, word, index, glyph_name):
