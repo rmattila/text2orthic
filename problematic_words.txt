@@ -1,4 +1,3 @@
-nl, pl: L on wrong side
 be, bi: need digraph to avoid overlap
 need improvement, but not flat wrong: rl, ec, ic, wn, gd, mk, tw, dw, wl; will need wn digraph once have med/fin w support
 need smoothing: io, eo, au
