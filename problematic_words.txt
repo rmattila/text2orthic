@@ -1,4 +1,3 @@
-wl: wrong digraph
 oa, ao: wrong
 nl, pl: L on wrong side
 be, bi: need digraph to avoid overlap

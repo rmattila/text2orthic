@@ -77,7 +77,7 @@ class OrthicEncoder:
                     advance = len(glyph_name)
                     if glyph_name == 'ay' and i > 0 and word[i-1].lower() in uses_under_ay or i > 1 and word[i-2:i].lower() in uses_under_ay:
                         glyph_name = 'ay_under'
-                    elif glyph_name == 'w' and i == 0:
+                    elif glyph_name == 'w' and (i == 0 or (len(word) > i+1 and word[i+1].lower() == 'l')):
                         glyph_name = 'w_initial'
                     glyph = self.create_glyph(word, i, glyph_name)
                     result.append(glyph)
