@@ -1,6 +1,23 @@
+sw, ws: not using digraph
+wl: wrong digraph
+oa, ao: wrong
+nl, pl: L on wrong side
+be, bi: need digraph to avoid overlap
+need improvement, but not flat wrong: rl, ec, ic, wn, gd, mk, tw, dw, wl; will need wn digraph once have med/fin w support
+need smoothing: io, eo, au
+ae, ea, ia
+* correct curve of ae/ea, ai/ia, ya
 gills
 rich
 efficient
 bin
 ability
 complex
+rt, tr
+ew, iw need their own custom digraph to handle the "hooking"
+
+Trickier cases to look at later:
+
+* should handle final -th
+* "ee" doesn't combine well with some letters like in "bee"
+* -ing vs ing (both in one word: "kinging") requires either a dictionary or semantic awareness

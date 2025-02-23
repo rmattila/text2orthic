@@ -2,6 +2,8 @@ import os
 from typing import List
 from glyph import Glyph, SPECIAL_SYMBOLS
 
+uses_under_ay = 'd t j q m n v t'.split()
+
 
 class OrthicEncoder:
     """
@@ -21,11 +23,8 @@ class OrthicEncoder:
         glyphs = {}
 
         for filename in os.listdir("../resources/glyphs"):
-            if filename == "..png":
-                # the period glyph
-                glyphs["."] = Glyph(".")
-            elif filename.endswith(".png"):
-                glyph_name = filename.split(".")[0]
+            if filename.endswith(".png"):
+                glyph_name = filename[:-4]
                 glyphs[glyph_name] = Glyph(glyph_name)
 
         return glyphs
@@ -40,6 +39,18 @@ class OrthicEncoder:
         Returns:
             list: A list of Glyph objects representing the encoded word.
         """
+        if word.lower() in ["l", "l."]:
+            result = [Glyph("l_standalone")]
+            if len(word) > 1:
+                result.append(Glyph("."))
+            return result
+
+        if word.lower() in ["s", "s."]:
+            result = [Glyph("s_straight")]
+            if len(word) > 1:
+                result.append(Glyph("."))
+            return result
+
         result = []
         i = 0
         while i < len(word):
@@ -53,6 +64,7 @@ class OrthicEncoder:
                     next_index < len(word)
                     and word[next_index].lower() == word[next_index - 1].lower()
                 )
+
                 # Skip this glyph if it would absorb a double letter
                 #
                 # An example is "ISSUE", which we want to parse to
@@ -62,12 +74,16 @@ class OrthicEncoder:
                     continue
 
                 if word[i:].lower().startswith(glyph_name):
+                    advance = len(glyph_name)
+                    if glyph_name == 'ay' and i > 0 and word[i-1].lower() in uses_under_ay or i > 1 and word[i-2:i].lower() in uses_under_ay:
+                        glyph_name = 'ay_under'
+                    elif glyph_name == 'w' and i == 0:
+                        glyph_name = 'w_initial'
                     glyph = self.create_glyph(word, i, glyph_name)
                     result.append(glyph)
                     if glyph.double:
-                        i += 2  # Advance by 2 for double letters
-                    else:
-                        i += len(glyph_name)
+                        advance = 2
+                    i += advance
                     glyph_added = True
                     break
 
@@ -97,8 +113,8 @@ class OrthicEncoder:
         if (
             len(glyph_name) == 1
             and index + 1 < len(word)
-            and not glyph_name
-            in SPECIAL_SYMBOLS  # no double-letter dot under, e.g., numbers
+            and glyph_name
+            not in SPECIAL_SYMBOLS  # no double-letter dot under, e.g., numbers
         ):
             double = word[index + 1].lower() == word[index].lower()
 
