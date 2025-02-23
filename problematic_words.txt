@@ -1,13 +1,12 @@
-need improvement, but not flat wrong: rl, ec, ic, wn, gd, mk, tw, dw, wl; will need wn digraph once have med/fin w support
-need smoothing: io, eo, au
+wn
+ic - bad overlap
+need improvement, but not flat wrong: ic, gd, mk, tw, dw
+need smoothing: io, eo
 ae, ea, ia
 * correct curve of ae/ea, ai/ia, ya
-gills
 rich
-efficient
-bin
-ability
-complex
+fice
+lex
 rt, tr
 ew, iw need their own custom digraph to handle the "hooking"
 
