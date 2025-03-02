@@ -1,4 +1,3 @@
-need smoothing: io, eo
 ae, ea, ia
 correct curve of ae/ea, ai/ia, ya
 rt, tr
@@ -18,10 +17,11 @@ Trickier cases to look at later:
 * final -th$
 * -ing vs ing (both in one word: "kinging") requires either a dictionary or semantic awareness
 
-"Slurring mode" for smoother writing more like you'd find in practice:
+"Ordinary mode" for smoother writing more like you'd find in practice:
 
-* ["other prefixes and slurs"](https://orthic.shorthand.fun/supplement#other-prefixes-and-slurs)
-* ["terminations"](https://orthic.shorthand.fun/supplement#terminations)
+* [manual "abbrevations" including common endings](https://orthic.shorthand.fun/manual#abbreviations)
+* [supplement "other prefixes and slurs"](https://orthic.shorthand.fun/supplement#other-prefixes-and-slurs) eg dv, mb
+* [supplement "terminations"](https://orthic.shorthand.fun/supplement#terminations)
 * gd
 * mk
 * final ks$
@@ -30,3 +30,5 @@ Trickier cases to look at later:
 * td/dt at 90 px wide
 
 Note: Small letters are roughly 30px wide, large 60px.
+
+Originally thought io and eo needed smoothing, but much of the time, outside -tion and maybe -[ei]ous, they fall across syllable breaks, so they're fine as-is.
