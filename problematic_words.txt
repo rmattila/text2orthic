@@ -1,4 +1,3 @@
-dw
 need smoothing: io, eo
 ae, ea, ia
 correct curve of ae/ea, ai/ia, ya
