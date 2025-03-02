@@ -1,17 +1,35 @@
 wn
-ic - bad overlap
-need improvement, but not flat wrong: ic, gd, mk, tw, dw
+wk
+tw, dw
 need smoothing: io, eo
 ae, ea, ia
-* correct curve of ae/ea, ai/ia, ya
-rich
-fice
-lex
+correct curve of ae/ea, ai/ia, ya
 rt, tr
-ew, iw need their own custom digraph to handle the "hooking"
+lt
+
+Join fixing, roughly by severity of the problem:
+
+* ex (lex)
+* kn (know)
+* ee (bee)
+* ew, iw, eew, iew (hooked w in new, view)
+* ech, ich (sketch, rich)
+* ec, ic (-fice)
 
 Trickier cases to look at later:
 
-* should handle final -th
-* "ee" doesn't combine well with some letters like in "bee"
+* final -th$
 * -ing vs ing (both in one word: "kinging") requires either a dictionary or semantic awareness
+
+"Slurring mode" for smoother writing more like you'd find in practice:
+
+* ["other prefixes and slurs"](https://orthic.shorthand.fun/supplement#other-prefixes-and-slurs)
+* ["terminations"](https://orthic.shorthand.fun/supplement#terminations)
+* gd
+* mk
+* final ks$
+* final fs$
+* mn at 90 px wide
+* td/dt at 90 px wide
+
+Note: Small letters are roughly 30px wide, large 60px.
