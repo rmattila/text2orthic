@@ -1,0 +1,23 @@
+[project]
+name = "text2orthic"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pillow>=11.1.0",
+    "tqdm>=4.67.1",
+]
+
+[project.optional-dependencies]
+gui = [
+    "pysimplegui>=5.0.9",
+]
+
+[tool.uv.sources]
+pysimplegui = { index = "pysimplegui" }
+
+[[tool.uv.index]]
+name = "pysimplegui"
+url = "https://PySimpleGUI.net/install"
+explicit = true
