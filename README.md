@@ -61,5 +61,5 @@ The glyph images used in this project are licensed under the [Creative Commons A
 ## Resources
 
 - [Orthic Shorthand](https://orthic.shorthand.fun/) and [Dictionary](https://orthic.shorthand.fun/dictionary)
-- [Ernest Clare, "Orhtographic Cursive Shorthand" (1915)](https://recordsearch.naa.gov.au/SearchNRetrieve/Interface/ViewImage.aspx?B=3408323)
+- [Ernest Clarey, "Orthographic Cursive Shorthand" (1915)](https://recordsearch.naa.gov.au/SearchNRetrieve/Interface/ViewImage.aspx?B=3408323)
 - [r/orthic](https://old.reddit.com/r/orthic/) and [r/shorthand](https://old.reddit.com/r/shorthand/)
