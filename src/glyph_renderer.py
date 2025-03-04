@@ -1,6 +1,7 @@
 from typing import List
 from PIL import Image
 from tqdm import tqdm
+from importlib import resources
 
 from glyph import Glyph, SPECIAL_SYMBOLS
 from orthic_encoder import OrthicEncoder
@@ -11,7 +12,7 @@ def sign(x: int):
 
 
 class GlyphRenderer:
-    def __init__(self, glyph_folder="../resources/glyphs"):
+    def __init__(self, glyph_folder=resources.files('glyphs')):
         self.glyph_folder = glyph_folder
 
     def render_text(
@@ -163,7 +164,8 @@ class GlyphRenderer:
 
     def load_glyph_image(self, symbol):
         # Load the glyph image
-        img = Image.open(f"{self.glyph_folder}/{symbol}.png")
+        path = self.glyph_folder.joinpath(f"{symbol}.png")
+        img = Image.open(path)
 
         # Parse transparency
         img = self.convert_grayscale_to_alpha(img)

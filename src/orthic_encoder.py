@@ -1,6 +1,7 @@
 import os
 from typing import List
 from glyph import Glyph, SPECIAL_SYMBOLS
+from importlib import resources
 
 uses_under_ay = 'd t j q m n v t'.split()
 
@@ -22,10 +23,12 @@ class OrthicEncoder:
         """
         glyphs = {}
 
-        for filename in os.listdir("../resources/glyphs"):
-            if filename.endswith(".png"):
-                glyph_name = filename[:-4]
-                glyphs[glyph_name] = Glyph(glyph_name)
+        for resource in resources.files('glyphs').iterdir():
+            filename = os.path.basename(resource.name)
+            glyph_name, ext = os.path.splitext(filename)
+            if ext == ".png":
+                glyph = Glyph(glyph_name)
+                glyphs[glyph_name] = glyph
 
         return glyphs
 
