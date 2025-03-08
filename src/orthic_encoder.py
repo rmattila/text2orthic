@@ -89,12 +89,12 @@ class OrthicEncoder:
                                                 # Handle "wl" digraph
                                                 or (len(word) >= i+1 and word[i+1].lower() == 'l')):
                         glyph_name = 'w_initial'
-                    elif (glyph_name == 'ea'
+                    elif (glyph_name == 'ea' or glyph_name == 'ae' or glyph_name == 'ia'
                           and (i == 0
                                or i > 0 and word[i-1].lower() in uses_over_ea)):
-                        glyph_name = 'ea_over'
+                        glyph_name = 'ia_over' if 'i' in glyph_name else 'ea_over'
                         if len(word) >= i+2 and word[i+2].lower() in needs_angle_after_over_ea:
-                            glyph_name = 'ea_over_angled'
+                            glyph_name = f'{glyph_name}_angled'
                     glyph = self.create_glyph(word, i, glyph_name)
                     result.append(glyph)
                     if glyph.double:
