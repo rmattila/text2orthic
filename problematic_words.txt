@@ -1,5 +1,3 @@
-lt
-
 Join fixing, roughly by severity of the problem:
 
 * ex (lex)
@@ -8,6 +6,7 @@ Join fixing, roughly by severity of the problem:
 * ew, iw, eew, iew (hooked w in new, view)
 * ech, ich (sketch, rich)
 * ec, ic (-fice)
+* elt, ilt (looks too much like lt_initial)
 
 Trickier cases to look at later:
 
