@@ -95,6 +95,8 @@ class OrthicEncoder:
                         glyph_name = 'ia_over' if 'i' in glyph_name else 'ea_over'
                         if len(word) >= i+2 and word[i+2].lower() in needs_angle_after_over_ea:
                             glyph_name = f'{glyph_name}_angled'
+                    elif glyph_name == 'lt' and i == 0:
+                        glyph_name = 'lt_initial'
                     glyph = self.create_glyph(word, i, glyph_name)
                     result.append(glyph)
                     if glyph.double:
