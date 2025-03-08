@@ -1,4 +1,5 @@
-ia, and correct curve of ai/ia
+ia, and correct curve of ia
+ae, follow rule for ea, per Teaching pt 1
 rt, tr
 lt
 
@@ -13,7 +14,6 @@ Join fixing, roughly by severity of the problem:
 
 Trickier cases to look at later:
 
-* ae: there are no examples in the manual. Need to check the NT.
 * ea: not getting smoothed due to some join fixup glyphs: se, be, ere. Tests: seat should use ea_over_angled, beast likewise, cereal should use regular (under) ea.
 * final -th$
 * -ing vs ing (both in one word: "kinging") requires either a dictionary or semantic awareness
