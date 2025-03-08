@@ -1,4 +1,3 @@
-rt, tr
 lt
 
 Join fixing, roughly by severity of the problem:
