@@ -48,7 +48,12 @@ Using `pip` and friends:
 SimpleGUI will bug you about licensing. You can get a free hobby license to use with a bit of form filling.
 
 ## Adding New Glyphs
-To add a new glyph, place a `.png` image in the `src/glyphs` folder. The filename should match the glyph's representation (e.g., `ing.png` for the "ing" glyph). In the image, mark the start of the glyph's stroke with a green pixel and the end with a red pixel. The system prioritizes longer filenames, meaning if `ing.png` exists, it will be used over separate `i.png`, `n.png` and `g.png` glyphs for the "ing" combination.
+To add a new glyph, place a `.png` image in the `src/glyphs` folder. The filename should match the glyph's representation (e.g., `ing.png` for the "ing" glyph). In the image, mark the start of the glyph's stroke with a green pixel and the end with a red pixel. Glyphs are stitched together based on the colored pixels:
+
+![Example of Glyph Stiching](resources/glyph_stitch.png)
+
+The system prioritizes longer filenames, meaning if `ing.png` exists, it will be used over separate `i.png`, `n.png` and `g.png` glyphs for the "ing" combination.
+
 
 ## Demonstrations
 Below are images demonstrating the system's output.
