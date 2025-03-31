@@ -3,9 +3,9 @@ from typing import List
 from glyph import Glyph, SPECIAL_SYMBOLS
 from importlib import resources
 
-uses_under_ay = frozenset('dtjqmnvt') | { 'qu' }
-uses_over_ea = frozenset('sbmpny')
-needs_angle_after_over_ea = frozenset('tds')
+uses_under_ay = frozenset("dtjqmnvt") | {"qu"}
+uses_over_ea = frozenset("sbmpny")
+needs_angle_after_over_ea = frozenset("tds")
 
 
 class OrthicEncoder:
@@ -25,7 +25,7 @@ class OrthicEncoder:
         """
         glyphs = {}
 
-        for resource in resources.files('glyphs').iterdir():
+        for resource in resources.files("glyphs").iterdir():
             filename = os.path.basename(resource.name)
             glyph_name, ext = os.path.splitext(filename)
             if ext == ".png":
@@ -80,23 +80,35 @@ class OrthicEncoder:
 
                 if word[i:].lower().startswith(glyph_name):
                     advance = len(glyph_name)
-                    if glyph_name == 'ay':
-                        if (i > 0 and word[i-1].lower() in uses_under_ay
+                    if glyph_name == "ay":
+                        if (
+                            i > 0
+                            and word[i - 1].lower() in uses_under_ay
                             # Handle "qu"
-                            or i > 1 and word[i-2:i].lower() in uses_under_ay):
-                            glyph_name = 'ay_under'
-                    elif glyph_name == 'w' and (i == 0
-                                                # Handle "wl" digraph
-                                                or (len(word) >= i+1 and word[i+1].lower() == 'l')):
-                        glyph_name = 'w_initial'
-                    elif (glyph_name == 'ea' or glyph_name == 'ae' or glyph_name == 'ia'
-                          and (i == 0
-                               or i > 0 and word[i-1].lower() in uses_over_ea)):
-                        glyph_name = 'ia_over' if 'i' in glyph_name else 'ea_over'
-                        if len(word) >= i+2 and word[i+2].lower() in needs_angle_after_over_ea:
-                            glyph_name = f'{glyph_name}_angled'
-                    elif glyph_name == 'lt' and i == 0:
-                        glyph_name = 'lt_initial'
+                            or i > 1
+                            and word[i - 2 : i].lower() in uses_under_ay
+                        ):
+                            glyph_name = "ay_under"
+                    elif glyph_name == "w" and (
+                        i == 0
+                        # Handle "wl" digraph
+                        or (len(word) >= i + 1 and word[i + 1].lower() == "l")
+                    ):
+                        glyph_name = "w_initial"
+                    elif (
+                        glyph_name == "ea"
+                        or glyph_name == "ae"
+                        or glyph_name == "ia"
+                        and (i == 0 or i > 0 and word[i - 1].lower() in uses_over_ea)
+                    ):
+                        glyph_name = "ia_over" if "i" in glyph_name else "ea_over"
+                        if (
+                            len(word) >= i + 2
+                            and word[i + 2].lower() in needs_angle_after_over_ea
+                        ):
+                            glyph_name = f"{glyph_name}_angled"
+                    elif glyph_name == "lt" and i == 0:
+                        glyph_name = "lt_initial"
                     glyph = self.create_glyph(word, i, glyph_name)
                     result.append(glyph)
                     if glyph.double:
@@ -108,8 +120,11 @@ class OrthicEncoder:
             if not glyph_added:
                 result.append(Glyph("Unknown"))
                 i += 1
-        if result[-2:] == [Glyph('w'), Glyph('s')] or result[-2:] == [Glyph('w_initial'), Glyph('s')]:
-            result[-2] = Glyph('ws_final')
+        if result[-2:] == [Glyph("w"), Glyph("s")] or result[-2:] == [
+            Glyph("w_initial"),
+            Glyph("s"),
+        ]:
+            result[-2] = Glyph("ws_final")
             result.pop()
         return result
 
