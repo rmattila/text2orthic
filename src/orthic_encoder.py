@@ -92,7 +92,7 @@ class OrthicEncoder:
                     elif glyph_name == "w" and (
                         i == 0
                         # Handle "wl" digraph
-                        or (len(word) >= i + 1 and word[i + 1].lower() == "l")
+                        or (len(word) > i + 1 and word[i + 1].lower() == "l")
                     ):
                         glyph_name = "w_initial"
                     elif (
